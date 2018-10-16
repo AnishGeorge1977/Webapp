@@ -5,7 +5,8 @@ var flash = require("connect-flash");
 var passport = require("passport");
 var localStrategy  = require("passport-local");
 
-var prodConfig = false;
+var prodConfig = true;
+
 app.set("view engine","ejs");
 
 app.use(indexRoutes);
