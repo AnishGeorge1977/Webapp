@@ -19,7 +19,7 @@ app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
 if(prodConfig){
-    mongoose.connect('mongodb://13.126.90.93:27017/webapp', { useNewUrlParser: true });
+    mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true }); //13.126.90.93
 }else{
     mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true });
 }
