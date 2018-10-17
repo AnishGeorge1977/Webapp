@@ -12,13 +12,18 @@ passport        = require("passport"),
 bodyParser      = require("body-parser"),
 localStrategy   = require("passport-local"),
 User            = require("./models/user"),
-prodConfig      = false;
+prodConfig      = true;
 
 app.set("view engine","ejs");
 
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
-mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true });
+if(prodConfig){
+    mongoose.connect('mongodb://13.126.90.93:27017/webapp', { useNewUrlParser: true });
+}else{
+    mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true });
+}
+
 
 //////////////PASSPORT CONFIGURATION ////////////////////
 app.use(require("express-session")({
@@ -48,10 +53,10 @@ app.use(indexRoutes);
 
 
 if(prodConfig){
-    //Server Demon Thread - Running in Production Mode.
-   var server = app.listen(3000, function() {
-    console.log('Ready on port %d', server.address().port);
-}); 
+     //Server Demon Thread - Running in Production Mode.
+        var server = app.listen(3000, function() {
+        console.log('Ready on port %d', server.address().port);
+    }); 
 } else {
  //Server Demon Thread - Running in Staging Mode.
 app.listen(process.env.PORT , process.env.IP , function(){
