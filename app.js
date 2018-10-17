@@ -1,29 +1,37 @@
-var express = require("express");
-var app = express();
-var indexRoutes = require("./routes/index");
-var flash = require("connect-flash");
-var passport = require("passport");
-var localStrategy  = require("passport-local");
 
-var prodConfig = true;
+/*
+*Variable declaration section
+*/
+var express     = require("express"),
+app             = express(),
+mongoose        = require("mongoose"),
+blogRoutes      = require("./routes/blog"),
+indexRoutes     = require("./routes/index"),
+flash           = require("connect-flash"),
+passport        = require("passport"),
+bodyParser      = require("body-parser"),
+localStrategy   = require("passport-local"),
+User            = require("./models/user"),
+prodConfig      = false;
 
 app.set("view engine","ejs");
 
-app.use(indexRoutes);
-app.use(flash());
+app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
+mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true });
 
 //////////////PASSPORT CONFIGURATION ////////////////////
 app.use(require("express-session")({
-    secret : "Yelp Camp - Best in the world",
+    secret : "My Web Page @123",
     resave : false,
     saveUninitialized : false
 }));
-
+app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
-
-
+passport.use(new localStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //User Management across routes
 app.use(function(req , res , next){
@@ -32,6 +40,12 @@ app.use(function(req , res , next){
     res.locals.success = req.flash("success");
     next();
 });
+
+//User specific routes and see the order in which the routes are initilized in app.js
+app.use(blogRoutes);
+app.use(indexRoutes);
+
+
 
 if(prodConfig){
     //Server Demon Thread - Running in Production Mode.
