@@ -17,12 +17,12 @@
                            <span><%= blog.created.toDateString() %></span> 
                         </div>
                         <div class="description">
-                            <p><%= blog.body %></p>   
+                            <p><%= blog.body.substr(0, 50) %>....</p>   
                         </div>
                         <div class="extra">
-                            <a class="ui floated basic violet button" href="/blogs/<%=blog._id%>">Read More</a>
-                            <i class="right chevron icon"></i>
-                            <a class = "ui floated basic red button" href="/blogs/<%=blog._id%>/edit">Edit Blog</a> 
+                            <a class="ui floated basic violet button" href="/blog/<%=blog._id%>">Read More</a>
+                            <!--i class="right chevron icon"></i-->
+                            <a class = "ui floated basic red button" href="/blog/<%=blog._id%>/edit">Edit Blog</a> 
                         </div>
                     </div>
                 </div>

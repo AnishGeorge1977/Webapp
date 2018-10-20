@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-mongoose.set('useCreateIndex', true);
+
 var passportLocalMongoose  = require("passport-local-mongoose");
 
 var blogSchema = new mongoose.Schema({

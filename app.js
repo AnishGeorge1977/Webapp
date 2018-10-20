@@ -11,13 +11,16 @@ flash           = require("connect-flash"),
 passport        = require("passport"),
 expSanitizer   = require("express-sanitizer"),
 bodyParser      = require("body-parser"),
+methodOverride = require("method-override"),
 localStrategy   = require("passport-local"),
 User            = require("./models/user"),
 prodConfig      = true;
 
+//mongoose.set('useCreateIndex', true);
 app.set("view engine","ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(expSanitizer()); // Must be after body-parser
+app.use(methodOverride("_method"));
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
 if(prodConfig){
     mongoose.connect('mongodb://webappuser:webappuserpwd@localhost:27017/webapp', { useNewUrlParser: true }); //13.126.90.93
