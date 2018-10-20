@@ -9,14 +9,15 @@ blogRoutes      = require("./routes/blog"),
 indexRoutes     = require("./routes/index"),
 flash           = require("connect-flash"),
 passport        = require("passport"),
+expSanitizer   = require("express-sanitizer"),
 bodyParser      = require("body-parser"),
 localStrategy   = require("passport-local"),
 User            = require("./models/user"),
 prodConfig      = true;
 
 app.set("view engine","ejs");
-
 app.use(bodyParser.urlencoded({extended : true}));
+app.use(expSanitizer()); // Must be after body-parser
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
 if(prodConfig){
     mongoose.connect('mongodb://webappuser:webappuserpwd@localhost:27017/webapp', { useNewUrlParser: true }); //13.126.90.93
@@ -47,7 +48,7 @@ app.use(function(req , res , next){
 });
 
 //User specific routes and see the order in which the routes are initilized in app.js
-app.use(blogRoutes);
+app.use("/blog",blogRoutes);
 app.use(indexRoutes);
 
 

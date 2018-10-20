@@ -13,6 +13,11 @@ router.get("/landing",function(req , res){
     res.render("landing");
 });
 
+//GET : Home Page
+router.get("/home",function(req , res){
+    res.render("home",{username : req.user.username});
+});
+
 //GET : Sign up page
 router.get("/signup",function(req , res){
     var message = "";
@@ -26,7 +31,7 @@ router.post("/signup",function(req , res){
              res.render("auth/signup" , {message : err.message});
         } else {
             passport.authenticate("local")(req, res , function(){
-            res.render("blog/blog",{username : req.body.username});  
+            res.render("home",{username : req.body.username});  
             });
         }
     });
@@ -51,7 +56,7 @@ router.get("/failure",function(req , res){
 
 //GET : Success Page
 router.get("/success",function(req , res){
-     res.render("blog/blog",{username : req.user.username});
+     res.render("home",{username : req.user.username});
 });
 
 //GET : Log out user
