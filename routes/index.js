@@ -1,7 +1,8 @@
 var express     = require("express"),
 router          = express.Router(),
 passport        = require("passport"),
-User            = require("../models/user.js");
+User            = require("../models/user.js"),
+middlewareObj   = require("../middleware");
 
 //Index Landing page
 router.get("/",function(req , res){
@@ -64,6 +65,11 @@ router.get("/logout",function(req , res){
     req.logout();
     req.flash("success" , "Logout sccessfull !!");
     res.redirect("/");
+});
+
+//GET : Method to view all blogs
+router.get("/blogs" , middlewareObj.isLoggedIn, function(req , res){
+    res.redirect("/blog");
 });
 
 

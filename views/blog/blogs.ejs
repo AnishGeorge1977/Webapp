@@ -14,7 +14,7 @@
                     <div class = "content">
                         <a class= "header" href="/blogs/<%=blog._id%> "><%= blog.title %></a>  
                         <div class = "meta">
-                           <span><%= blog.created.toDateString() %></span> 
+                           <span><%= blog.created.toDateString() %> : <%= blog.created.toLocaleTimeString() %></span> 
                         </div>
                         <div class="description">
                             <p><%= blog.body.substr(0, 50) %>....</p>   

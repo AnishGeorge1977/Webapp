@@ -6,7 +6,7 @@
         <div class = "item">
                 <img class= "ui centered rounded image" src = "<%= blog.image %>" >
                 <div class="content">
-                        <span><%= blog.created.toDateString() %></span>
+                        <span><%= blog.created.toDateString() %> : <%= blog.created.toLocaleTimeString() %> </span>
                 </div>  
                 <div class="description">
                         <p><%= blog.body%></p>
@@ -14,7 +14,7 @@
                 <a class ="ui black basi button" href = "/home">Home</a>
                 <a class="ui orange basic button" href = "/blog/<%=blog._id%>/edit">Edit Blog</a>
                 <form id="delete" action="/blog/<%=blog._id%>?_method=DELETE"  method="POST">
-                   <button class="ui red basic button">Delete</button>
+                   <button class="ui red basic button">Delete Blog</button>
                 </form>
         </div>
     </div>

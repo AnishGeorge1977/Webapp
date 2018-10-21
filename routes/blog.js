@@ -33,7 +33,7 @@ router.post("/",function(req , res){
             res.render("home", {username : req.user.username});  
             
         } else {
-             console.log("New Blog Created :"+newBlog);
+             //console.log("New Blog Created :"+newBlog);
              res.render("home" , {username : req.user.username});
             
         }
@@ -66,7 +66,7 @@ router.get("/:blogid/edit",function(req , res){
 
 //PUT : Method to update the blog
 router.put("/:blogid",function(req , res){
-    console.log("Inside the put method------------------------->"+req.params.blogid);
+    //console.log("Inside the put method------------------------->"+req.params.blogid);
     Blog.findByIdAndUpdate(req.params.blogid, req.body.blog, function(err , blog){
         if(err){
            res.render("home" , {username : req.user.username}); 
@@ -74,6 +74,17 @@ router.put("/:blogid",function(req , res){
            res.render("home" , {username : req.user.username}); 
         }
     });
+});
+
+//DELETE : Method to delete the blog
+router.delete("/:blogid",function(req , res){
+   Blog.findByIdAndRemove(req.params.blogid , function(err , newBlog){
+       if(err){
+           res.render("home" , {username : req.user.username});
+       } else {
+           res.render("home" , {username : req.user.username});
+       }
+   }); 
 });
 
 
