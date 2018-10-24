@@ -14,7 +14,7 @@ bodyParser      = require("body-parser"),
 methodOverride = require("method-override"),
 localStrategy   = require("passport-local"),
 User            = require("./models/user"),
-prodConfig      = false;
+prodConfig      = true;
 
 //mongoose.set('useCreateIndex', true);
 app.set("view engine","ejs");
