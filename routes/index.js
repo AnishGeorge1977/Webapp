@@ -2,7 +2,8 @@ var express     = require("express"),
 router          = express.Router(),
 passport        = require("passport"),
 User            = require("../models/user.js"),
-middlewareObj   = require("../middleware");
+middlewareObj   = require("../middleware"),
+path            =require("path");
 
 //Index Landing page
 router.get("/",function(req , res){
@@ -70,6 +71,13 @@ router.get("/logout",function(req , res){
 //GET : Method to view all blogs
 router.get("/blogs" , middlewareObj.isLoggedIn, function(req , res){
     res.redirect("/blog");
+});
+
+//GET : Method to view portfolio
+router.get("/portfolio",function(req , res){
+    //console.log("path name :"+path.join(__dirname));
+    //res.sendFile(path.join(__dirname+'/index.html'));
+    res.render("portfolio/index");
 });
 
 
