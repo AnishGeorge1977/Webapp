@@ -77,5 +77,12 @@ router.get("/portfolio",function(req , res){
     res.render("portfolio/index");
 });
 
+//GET : Method to download Resume
+router.get("/download",function(req , res){
+   //console.log("Inside the download function"+__dirname);
+   var file = __dirname+'/resources/Anish George_Resume.pdf';
+   res.download(file);   
+});
+
 
 module.exports = router;

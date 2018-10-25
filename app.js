@@ -56,6 +56,9 @@ app.use(indexRoutes);
 
 
 
+
+
+
 if(prodConfig){
      //Server Demon Thread - Running in Production Mode.
         var server = app.listen(3000, function() {
