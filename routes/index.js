@@ -6,12 +6,24 @@ middlewareObj   = require("../middleware");
 
 //Index Landing page
 router.get("/",function(req , res){
-    res.render("landing");
+    res.render("landing/landing");
 });
 
 //GET : Landing Page
 router.get("/landing",function(req , res){
-    res.render("landing");
+    res.render("landing/landing");
+});
+
+//GET : Method to view portfolio
+router.get("/portfolio",function(req , res){
+    res.render("portfolio/profile");
+});
+
+//GET : Method to download Resume
+router.get("/download",function(req , res){
+   //console.log("Inside the download function"+__dirname);
+   var file = __dirname+'/resources/Anish George_Resume.pdf';
+   res.download(file);   
 });
 
 //GET : Home Page
@@ -72,17 +84,7 @@ router.get("/blogs" , middlewareObj.isLoggedIn, function(req , res){
     res.redirect("/blog");
 });
 
-//GET : Method to view portfolio
-router.get("/portfolio",function(req , res){
-    res.render("portfolio/index");
-});
 
-//GET : Method to download Resume
-router.get("/download",function(req , res){
-   //console.log("Inside the download function"+__dirname);
-   var file = __dirname+'/resources/Anish George_Resume.pdf';
-   res.download(file);   
-});
 
 
 module.exports = router;
