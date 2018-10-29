@@ -3,11 +3,18 @@
   
   
   <!-- SHOWCASE SLIDER -->
-  <div class="container">
+  <div class="container bg-dark text-light">
     <div class="row mt-5">
       <div class="col-md-12 mb-4 text-center">
-      <h1 class="display-2">Welcome</h1>
-        <p class="lead">Please navigate through the page and do sign up at the footer as more forms are in store !!. Thank You.</p>
+        <% if (username === undefined || username.length == 0 ) {%>
+            <h1 class="display-2">Welcome</h1>
+            <p class="lead">Please navigate through the page and do sign up or log in as more forms are in store !!. Thank You.</p>
+            <a href ="/signup" class="btn btn-warning">Sign Up</a>
+            <a href="/login" class="btn btn-success">Log in</a>
+         <%} else {%>   
+            <h1 class="display-2">Welcome , <%=username%></h1>
+            <p class="lead">Thanks for Signup /Log in , Please navigate through the page and do sign up at the footer as more forms are in store !!. Thank You.</p>
+         <%}%>   
     </div>
     </div>
   </div>
@@ -59,26 +66,20 @@
 
       <div class="row mb-4">
         <div class="col-md-4">
-          <a href="https://source.unsplash.com/random/563x563" data-toggle="lightbox" data-gallery="img-gallery" data-height="563"
-            data-width="563">
-            <img src="https://source.unsplash.com/random/563x563" alt="" class="img-fluid">
-          </a>
-        </div>
+          <img src="/images/image_04.jpg" alt="" class="img-fluid">
+        </a>
+       </div>
 
-        <div class="col-md-4">
-          <a href="https://source.unsplash.com/random/564x564" data-toggle="lightbox" data-gallery="img-gallery" data-height="564"
-            data-width="564">
-            <img src="https://source.unsplash.com/random/564x564" alt="" class="img-fluid">
-          </a>
-        </div>
+       <div class="col-md-4">
+        <img src="/images/image_05.jpg" alt="" class="img-fluid">
+      </a>
+     </div>
 
-        <div class="col-md-4">
-          <a href="https://source.unsplash.com/random/565x565" data-toggle="lightbox" data-gallery="img-gallery" data-height="565"
-            data-width="565">
-            <img src="https://source.unsplash.com/random/565x565" alt="" class="img-fluid">
-          </a>
-        </div>
-      </div>
+     <div class="col-md-4">
+      <img src="/images/image_06.jpg" alt="" class="img-fluid">
+    </a>
+   </div>
+  </div>
     </div>
   </section>
 
@@ -88,10 +89,10 @@
       <div class="row">
         <div class="col">
           <h1>Sign Up</h1>
-          <form class="form-inline justify-content-center">
-            <input type="text" class="form-control mb-2 mr-2" placeholder="Enter Name">
-            <input type="text" class="form-control mb-2 mr-2" placeholder="Enter Email">
-            <input type="text" class="form-control mb-2 mr-2" placeholder="Password">
+          <form class="form-inline justify-content-center" action="/signup" method = "POST">
+            <input type="text" class="form-control mb-2 mr-2" name = "username" placeholder = "User Name">
+            <input type="text" class="form-control mb-2 mr-2" name = "email" placeholder = "User email">
+            <input type="text" class="form-control mb-2 mr-2" name = "password" placeholder = "User password">
             <button class="btn btn-primary mb-2">Sign Up</button>
           </form>
         </div>

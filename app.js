@@ -15,6 +15,7 @@ methodOverride = require("method-override"),
 localStrategy   = require("passport-local"),
 User            = require("./models/user"),
 prodConfig      = true;
+devConfig       = false;
 
 //mongoose.set('useCreateIndex', true);
 app.set("view engine","ejs");
@@ -24,8 +25,9 @@ app.use(methodOverride("_method"));
 app.use(express.static(__dirname+"/public")); //Setting the directory name directly
 if(prodConfig){
     mongoose.connect('mongodb://webappuser:webappuserpwd@localhost:27017/webapp', { useNewUrlParser: true }); //13.126.90.93
-}else{
-    mongoose.connect('mongodb://webappuser:webappuserpwd@localhost:27017/webapp', { useNewUrlParser: true });
+}
+if(devConfig){
+    mongoose.connect('mongodb://localhost:27017/webapp', { useNewUrlParser: true ,useCreateIndex : true });
 }
 
 
@@ -59,16 +61,9 @@ app.use(indexRoutes);
 
 
 
-if(prodConfig){
-     //Server Demon Thread - Running in Production Mode.
-        var server = app.listen(3000, function() {
-        console.log('Ready on port %d', server.address().port);
-    }); 
-} else {
- //Server Demon Thread - Running in Staging Mode.
-app.listen(process.env.PORT , process.env.IP , function(){
-    console.log("Server ready of service !!!");
+//Server Demon Thread - Running in Production Mode.
+var server = app.listen(3000, function() {
+   console.log('Ready on port %d', server.address().port);
 });   
-}
 
 

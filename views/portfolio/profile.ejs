@@ -448,7 +448,7 @@
       </div>
       <div class="card card-body py-5">
         <h3>Get In Touch</h3>
-        <form>
+        <form action="/enquiry" method = "POST">
           <div class="form-group">
             <div class="input-group input-group-lg">
               <div class="input-group-prepend">
@@ -456,7 +456,7 @@
                   <i class="fas fa-user"></i>
                 </span>
               </div>
-              <input type="text" class="form-control bg-dark text-white" placeholder="Name">
+              <input type="text" class="form-control bg-dark text-white" name="username"  placeholder="Name">
             </div>
           </div>
 
@@ -467,7 +467,7 @@
                   <i class="fas fa-envelope"></i>
                 </span>
               </div>
-              <input type="email" class="form-control bg-dark text-white" placeholder="Email">
+              <input type="email" class="form-control bg-dark text-white" name="email" placeholder="Email">
             </div>
           </div>
 
@@ -478,11 +478,12 @@
                   <i class="fas fa-pencil-alt"></i>
                 </span>
               </div>
-              <textarea class="form-control bg-dark text-white" placeholder="Name"></textarea>
+              <textarea class="form-control bg-dark text-white" name="address"  placeholder="Address"></textarea>
             </div>
           </div>
 
           <input type="submit" value="Submit" class="btn btn-success btn-block btn-lg">
+          
         </form>
       </div>
     </div>

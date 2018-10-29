@@ -1,20 +1,28 @@
 <% include ../partials/header %>
-<div class = "container">
-    <div class = "row">
-        <h1 style = "text-align : center">Login User</h1>
-        <div style = "width : 30% ; margin: 0 auto;">
-         <form action="/login" method = "POST">
-             <div class="form-group">
-                <input class="form-control" type = "text" name = "username" placeholder = "User Name">
+
+<body>
+        <div class="row">
+          <div class="container col-lg-8 d-none d-lg-block">
+             <h1 style = "text-align : center">Login User</h1>
             </div>
-            <div class="form-group">
-             <input  class="form-control" type = "password" name = "password" placeholder = "User password">
-             </div>
-             <div class="form-group">
-            <button class="btn btn-lg btn-default btn-primary btn-block">Login</button>
-            <a href = "/signup" class="btn btn-lg btn-default btn-primary btn-block">Not a User ?</a>
+          </div>
+          <div class="container col-lg-4">
+            <div class="card bg-primary text-center card-form">
+              <div class="card-body">
+                <p>Please fill out this form to login</p>
+                <form action="/login" method = "POST">
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" name = "username" placeholder = "User Name">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" name = "password" placeholder = "User Password">
+                  </div>
+                  <input type="submit" value="Login" class="btn btn-outline-light btn-block">
+                  <a href = "/signup" class="btn btn-outline-light btn-block">Sign Up</a>
+                </form>
+              </div>
             </div>
-         </form>   
-       </div>
-    </div>
-</div>
+          </div>
+        </div>
+</body>
+</html>
