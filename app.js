@@ -56,11 +56,6 @@ app.use(function(req , res , next){
 app.use("/blog",blogRoutes);
 app.use(indexRoutes);
 
-
-
-
-
-
 //Server Demon Thread - Running in Production Mode.
 var server = app.listen(3000, function() {
    console.log('Ready on port %d', server.address().port);

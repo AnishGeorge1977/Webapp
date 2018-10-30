@@ -7,12 +7,18 @@ middlewareObj   = require("../middleware");
 
 //Index Landing page
 router.get("/",function(req , res){
+    var userName = "";
+    if(req.body.username === undefined ? userName : req.body.username);
     res.render("landing/landing" , {username : req.body.username});
 });
 
 //GET : Landing Page
 router.get("/landing",function(req , res){
-    res.render("landing/landing" , {username : req.body.username});
+    var userName = "";
+    if(res.locals.currentUser !== undefined ){
+        userName = res.locals.currentUser.username;
+    }
+    res.render("landing/landing" , {username : userName});
 });
 
 //GET : Method to view portfolio
@@ -29,7 +35,7 @@ router.get("/download",function(req , res){
 
 //GET : Home Page
 router.get("/home",function(req , res){
-    res.render("home",{username : req.user.username});
+    res.render("home",{username : req.body.username});
 });
 
 //GET : Sign up page
@@ -40,7 +46,6 @@ router.get("/signup",function(req , res){
 
 //POST : Sign up page - Please note the register function
 router.post("/signup",function(req , res){
-    //console.log("User Email :=====================>"+req.body.email);
     User.register(new User({username : req.body.username}), req.body.password, function(err , newUser){
         if(err){
              res.render("auth/signup" , {message : err.message});
@@ -78,7 +83,7 @@ router.get("/failure",function(req , res){
 
 //GET : Success Page
 router.get("/success",function(req , res){
-     res.render("landing/landing",{username : req.user.username});
+     res.redirect("/landing");
 });
 
 //GET : Log out user
